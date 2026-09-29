@@ -72,7 +72,7 @@ em.fl{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--bra
 .mobile .btn{margin-top:32px;align-self:flex-start}
 
 /* ---------- HERO ---------- */
-.hero{min-height:100svh;display:grid;grid-template-columns:1.1fr .9fr;align-items:center;gap:60px;padding-block:120px 70px;position:relative}
+.hero{min-height:100svh;display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:60px;padding-block:120px 70px;position:relative}
 .hero h1{font-family:var(--display);font-weight:400;font-size:clamp(46px,6.6vw,104px);line-height:1.03;letter-spacing:-.02em}
 .hero h1 .line{display:block;overflow:hidden;padding-bottom:.04em}
 .hero h1 .line>span{display:block;transform:translateY(105%);animation:rise 1.2s var(--ease) forwards}
@@ -88,16 +88,42 @@ em.fl{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--bra
 @keyframes rise{to{transform:translateY(0)}}
 @keyframes fadeup{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
 
-.visual{position:relative;justify-self:end;width:min(100%,470px)}
-.arch{position:relative;aspect-ratio:4/5.2;border-radius:999px 999px 6px 6px;overflow:hidden;background:var(--sand);box-shadow:0 50px 90px -50px rgba(30,27,24,.45)}
-.arch img{width:100%;height:100%;object-fit:cover;object-position:50% 40%;transform:scale(1.12);animation:settle 2.4s var(--ease) .2s forwards}
-.arch::after{content:"";position:absolute;inset:10px;border-radius:999px 999px 2px 2px;border:1px solid rgba(250,247,242,.55);pointer-events:none}
+/* hero stage: clinic photo + smile medallion + promo card */
+.stage{position:relative;justify-self:end;width:100%;max-width:640px;padding:0 0 70px 60px}
+.photo{position:relative;aspect-ratio:4/4.3;border-radius:22px 240px 22px 22px;overflow:hidden;background:var(--ink);box-shadow:0 60px 100px -60px rgba(30,27,24,.55)}
+.photo img{width:100%;height:100%;object-fit:cover;object-position:78% 50%;transform:scale(1.1);animation:settle 2.6s var(--ease) .2s forwards}
+.photo::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(30,27,24,0) 45%,rgba(30,27,24,.55) 100%)}
 @keyframes settle{to{transform:scale(1)}}
-.badge{position:absolute;left:-58px;bottom:44px;width:150px;height:150px;border-radius:50%;background:var(--porcelain);display:grid;place-items:center;box-shadow:0 24px 50px -24px rgba(30,27,24,.4)}
-.badge svg.ring{position:absolute;inset:0;animation:spin 36s linear infinite}
-.badge text{font-family:var(--mono);font-size:10px;letter-spacing:.3em;fill:var(--ink-soft);text-transform:uppercase}
-.badge img{width:46px}
-.visual .cap{position:absolute;right:-8px;top:12%;writing-mode:vertical-rl;transform:rotate(180deg)}
+.photo .tag{position:absolute;left:18px;top:18px;z-index:1;display:inline-flex;align-items:center;gap:8px;padding:9px 14px;border-radius:100px;background:rgba(250,247,242,.14);border:1px solid rgba(250,247,242,.28);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);color:#FBF6EE;font-family:var(--mono);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase}
+.photo .tag i{width:6px;height:6px;border-radius:50%;background:var(--brass-soft)}
+.medal{position:absolute;right:-26px;top:-34px;width:148px;height:148px;z-index:2;border-radius:50%;background:var(--porcelain);box-shadow:0 20px 40px -20px rgba(30,27,24,.45)}
+.medal .ring{position:absolute;inset:0;animation:spin 36s linear infinite}
+.medal text{font-family:var(--mono);font-size:9.5px;letter-spacing:.3em;fill:var(--ink-soft);text-transform:uppercase}
+.medal img{position:absolute;inset:20px;width:108px;height:108px;border-radius:50%;object-fit:cover;object-position:40% 45%;border:4px solid var(--ivory)}
+
+.pcard{position:absolute;left:0;bottom:0;z-index:3;width:min(410px,82%);background:var(--porcelain);border:1px solid var(--line);box-shadow:0 40px 70px -40px rgba(30,27,24,.5);padding:24px 26px 22px;overflow:hidden}
+.pcard[hidden]{display:none}
+.pc-top{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.pc-top .pill{padding:7px 13px;font-size:10px;white-space:nowrap}
+.pc-nav span{white-space:nowrap}
+.pc-nav{display:flex;align-items:center;gap:6px;font-family:var(--mono);font-size:11px;color:var(--mute)}
+.pc-nav button{width:32px;height:32px;border-radius:50%;border:1px solid var(--line);background:none;cursor:pointer;display:grid;place-items:center;color:var(--ink);transition:background .3s,border-color .3s}
+.pc-nav button:hover{background:var(--ink);color:var(--porcelain);border-color:var(--ink)}
+.pc-nav svg{width:12px;height:12px;stroke:currentColor;fill:none;stroke-width:1.6}
+.pc-slides{display:grid;margin-top:18px}
+.pc-slide{grid-area:1/1;opacity:0;transform:translateX(16px);transition:opacity .6s var(--ease),transform .6s var(--ease);pointer-events:none}
+.pc-slide.on{opacity:1;transform:none;pointer-events:auto}
+.pc-slide h3{font-family:var(--display);font-weight:400;font-size:25px;line-height:1.15}
+.pc-slide p{font-size:14px;color:var(--mute);margin-top:6px}
+.pc-price{display:flex;align-items:baseline;gap:12px;margin-top:14px}
+.pc-price b{font-family:var(--display);font-weight:400;font-size:46px;line-height:1;background:var(--gold);-webkit-background-clip:text;background-clip:text;color:transparent}
+.pc-price s{font-family:var(--display);font-size:19px;color:var(--mute);text-decoration-color:#B5533C}
+.pc-price .free{font-family:var(--serif);font-style:italic;font-size:34px;line-height:1;color:var(--brass)}
+.pc-until{font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--mute);margin-left:auto}
+.pc-cta{margin-top:18px;width:100%;justify-content:space-between}
+.pc-bar{position:absolute;left:0;bottom:0;height:2px;width:0;background:var(--gold)}
+.pc-bar.run{animation:pcbar var(--pc-ms,6500ms) linear forwards}
+@keyframes pcbar{to{width:100%}}
 @keyframes spin{to{transform:rotate(360deg)}}
 
 .hero-meta{grid-column:1/-1;display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--line);margin-top:10px}
@@ -255,7 +281,7 @@ footer{background:var(--ink);color:var(--ivory);padding-top:clamp(70px,10vw,130p
   .nav ul,.nav .btn.desk{display:none}
   .burger{display:block}
   .hero{grid-template-columns:1fr;gap:40px}
-  .visual{justify-self:center;order:-1;width:min(70vw,400px)}
+  .stage{justify-self:center;max-width:600px}
   .steps{grid-template-columns:1fr 1fr}
   .step:nth-child(3){padding-left:0;border-left:0}
   .step{padding-bottom:40px}
@@ -289,13 +315,22 @@ footer{background:var(--ink);color:var(--ivory);padding-top:clamp(70px,10vw,130p
 
   /* hero */
   .hero{padding-block:84px 36px;gap:0;min-height:auto}
-  .visual{width:100%;margin-bottom:30px}
-  .arch{aspect-ratio:auto;height:min(62vh,420px);border-radius:999px 999px 4px 4px}
-  .arch img{object-position:50% 38%}
-  .badge{left:auto;right:10px;bottom:-26px;width:104px;height:104px}
-  .badge text{font-size:13px}
-  .badge img{width:32px}
-  .visual .cap{display:none}
+  .hero-copy{display:contents}
+  .hero .top{order:1}.hero h1{order:2}.stage{order:3}.hero .lede{order:4}.hero .ctas{order:5}.hero-meta{order:6}
+  .hide-phone{display:none!important}
+  .stage{padding:0;margin-top:30px;max-width:none}
+  .photo img{object-position:92% 50%}
+  .pc-top .pill{font-size:9px;letter-spacing:.14em;padding:7px 11px}
+  .photo{aspect-ratio:4/3.5;border-radius:18px 130px 18px 18px}
+  .photo .tag{left:12px;top:12px;font-size:9.5px;padding:8px 12px}
+  .medal{right:-6px;top:-30px;width:104px;height:104px}
+  .medal text{font-size:13px}
+  .medal img{inset:14px;width:76px;height:76px;border-width:3px}
+  .pcard{position:relative;width:auto;margin:-64px 10px 0;padding:20px 18px 18px}
+  .pc-slide h3{font-size:22px}
+  .pc-price b{font-size:40px}
+  .pc-price .free{font-size:30px}
+  .pc-cta{padding:16px 20px}
   .hero .top{margin-bottom:16px;font-size:10px;letter-spacing:.14em}
   .hero h1{font-size:clamp(40px,11.8vw,52px)}
   .hero .lede{margin-top:18px;font-size:16px}
@@ -449,7 +484,7 @@ footer{background:var(--ink);color:var(--ivory);padding-top:clamp(70px,10vw,130p
 <main id="top">
 <!-- HERO -->
 <section class="hero wrap">
-  <div>
+  <div class="hero-copy">
     <p class="label top fade d1">Здраве <i>•</i> Естетика <i>•</i> Доверие</p>
     <h1>
       <span class="line"><span>С грижа</span></span>
@@ -459,20 +494,37 @@ footer{background:var(--ink);color:var(--ivory);padding-top:clamp(70px,10vw,130p
     <p class="lede fade d2">Нова дентална клиника в Шумен. 160 m² модерно пространство, три лечебни кабинета и дигитална диагностика, в спокойна среда и без бързане.</p>
     <div class="ctas fade d3">
       <a href="#kontakt" class="btn">Запазете час <span>→</span></a>
-      <a href="#promo" class="btn ghost">Откриваща промоция</a>
+      <a href="#promo" class="btn ghost hide-phone">Откриваща промоция</a>
     </div>
   </div>
 
-  <div class="visual fade d1">
-    <div class="arch"><img src="assets/smile.jpg" alt="Усмивка със здрави бели зъби" width="408" height="640" fetchpriority="high"></div>
-    <div class="badge" aria-hidden="true">
-      <svg class="ring" viewBox="0 0 150 150">
-        <defs><path id="circ" d="M75,75 m-58,0 a58,58 0 1,1 116,0 a58,58 0 1,1 -116,0"/></defs>
-        <text><textPath href="#circ" textLength="360" lengthAdjust="spacing">Отворено · 28.09.2026 · Шумен ·</textPath></text>
-      </svg>
-      <img src="assets/logo-mark-gold.png" alt="">
+  <div class="stage fade d1">
+    <div class="photo">
+      <img src="assets/clinic.jpg" alt="Akora Dental Clinic на ул. Дедеагач 7В в Шумен" width="916" height="700" fetchpriority="high">
+      <span class="tag"><i></i>Отворено от 28.09.2026</span>
     </div>
-    <span class="label cap" aria-hidden="true">Akora Dental Clinic · Шумен</span>
+    <div class="medal" aria-hidden="true">
+      <svg class="ring" viewBox="0 0 148 148">
+        <defs><path id="circ" d="M74,74 m-66,0 a66,66 0 1,1 132,0 a66,66 0 1,1 -132,0"/></defs>
+        <text><textPath href="#circ" textLength="410" lengthAdjust="spacing">Здраве · Естетика · Доверие ·</textPath></text>
+      </svg>
+      <img src="assets/smile.jpg" alt="">
+    </div>
+
+    <!-- Promotions: edit the PROMOS list in the script at the bottom of the page -->
+    <aside class="pcard" id="pcard" aria-label="Промоции" aria-roledescription="carousel" hidden>
+      <div class="pc-top">
+        <span class="pill" id="pc-tag">Промоция</span>
+        <div class="pc-nav">
+          <button type="button" id="pc-prev" aria-label="Предишна промоция"><svg viewBox="0 0 12 12"><path d="M8 1L3 6l5 5"/></svg></button>
+          <span id="pc-count">01 / 01</span>
+          <button type="button" id="pc-next" aria-label="Следваща промоция"><svg viewBox="0 0 12 12"><path d="M4 1l5 5-5 5"/></svg></button>
+        </div>
+      </div>
+      <div class="pc-slides" id="pc-slides" aria-live="polite"></div>
+      <a href="#kontakt" class="btn pc-cta" id="pc-cta">Запазете с промоцията <span>→</span></a>
+      <span class="pc-bar" id="pc-bar"></span>
+    </aside>
   </div>
 
   <div class="hero-meta fade d4">
@@ -593,7 +645,7 @@ footer{background:var(--ink);color:var(--ivory);padding-top:clamp(70px,10vw,130p
       <details><summary>Боли ли лечението?<i></i></summary><p>Работим със съвременна локална анестезия и щадящи техники. Ако се притеснявате от зъболекар, ще отделим повече време и ще следваме спокоен подход стъпка по стъпка.</p></details>
       <details><summary>Има ли къде да паркирам?<i></i></summary><p>Да. Клиниката има собствен паркинг и е напълно достъпна за хора с увреждания.</p></details>
       <details><summary>Приемате ли деца?<i></i></summary><p>Да. Детските прегледи са съобразени с възрастта, с търпение и без напрежение, за да изградим добро отношение към грижата за зъбите.</p></details>
-      <details><summary>Как да запазя час?<i></i></summary><p>Обадете се на 0889 783 456, изпратете заявка чрез формата по-долу или ни пишете в Instagram или Facebook на @akora.dental.clinic.</p></details>
+      <details><summary>Как да запазя час?<i></i></summary><p>Обадете се на 0889 783 456, изпратете заявка чрез формата по-долу или ни пишете в Instagram (@akora.dental.clinic) или във Facebook.</p></details>
     </div>
   </div>
 </section>
@@ -607,7 +659,8 @@ footer{background:var(--ink);color:var(--ivory);padding-top:clamp(70px,10vw,130p
       <div class="info">
         <a class="rv" href="tel:+359889783456"><span class="label">Телефон</span><p>0889 783 456</p></a>
         <a class="rv" data-d="1" href="https://www.google.com/maps/search/?api=1&query=%D1%83%D0%BB.+%D0%94%D0%B5%D0%B4%D0%B5%D0%B0%D0%B3%D0%B0%D1%87+7%D0%92%2C+%D0%A8%D1%83%D0%BC%D0%B5%D0%BD" target="_blank" rel="noopener"><span class="label">Адрес</span><p>ул. Дедеагач 7В<br>гр. Шумен</p></a>
-        <a class="rv wide" data-d="2" href="https://www.instagram.com/akora.dental.clinic/" target="_blank" rel="noopener"><span class="label">Instagram · Facebook</span><p>@akora.dental.clinic</p></a>
+        <a class="rv" data-d="2" href="https://www.instagram.com/akora.dental.clinic/" target="_blank" rel="noopener"><span class="label">Instagram</span><p>@akora.dental.clinic</p></a>
+        <a class="rv" data-d="2" href="https://www.facebook.com/profile.php?id=100076246360132" target="_blank" rel="noopener"><span class="label">Facebook</span><p>Akora Dental Clinic</p></a>
         <div class="rv wide" data-d="3"><span class="label">Работно време</span><p>Пон — Пет&nbsp;&nbsp;9:00 — 19:00<br>Събота&nbsp;&nbsp;10:00 — 14:00</p></div>
       </div>
     </div>
@@ -648,7 +701,7 @@ footer{background:var(--ink);color:var(--ivory);padding-top:clamp(70px,10vw,130p
       </div>
       <div><h4>Клиника</h4><ul><li><a href="#promo">Промоция</a></li><li><a href="#uslugi">Услуги</a></li><li><a href="#klinikata">Клиниката</a></li><li><a href="#vaprosi">Въпроси</a></li></ul></div>
       <div><h4>Контакт</h4><ul><li><a href="tel:+359889783456">0889 783 456</a></li><li>ул. Дедеагач 7В</li><li>гр. Шумен</li></ul></div>
-      <div><h4>Последвайте ни</h4><ul><li><a href="https://www.instagram.com/akora.dental.clinic/" target="_blank" rel="noopener">Instagram</a></li><li><a href="https://www.facebook.com/akora.dental.clinic" target="_blank" rel="noopener">Facebook</a></li></ul></div>
+      <div><h4>Последвайте ни</h4><ul><li><a href="https://www.instagram.com/akora.dental.clinic/" target="_blank" rel="noopener">Instagram</a></li><li><a href="https://www.facebook.com/profile.php?id=100076246360132" target="_blank" rel="noopener">Facebook</a></li></ul></div>
     </div>
     <div class="legal">
       <span>© <span id="yr"></span> Akora Dental Clinic. Всички права запазени.</span>
@@ -709,6 +762,48 @@ document.getElementById('f-date').min=new Date().toISOString().split('T')[0];
   if(!open){s.firstElementChild.style.background='#9A9189';s.firstElementChild.style.animation='none'}
 })();
 document.getElementById('yr').textContent=new Date().getFullYear();
+
+// ---- hero promotions ----
+// Add, remove or edit promotions here. A promotion disappears automatically after its "until" date.
+// price: {free:true} | {now:'45 €', was:'60 €'} | omit for no price.  service: option preselected in the booking form.
+const PROMOS=[
+  {tag:'Откриваща промоция',title:'Безплатен първичен преглед',text:'Професионална оценка и индивидуален план за лечение.',price:{free:true},until:'2026-10-31',service:'Безплатен първичен преглед'},
+  {tag:'Откриваща промоция',title:'Почистване на зъбен камък + полиране',text:'По-добро устно здраве, по-свеж дъх и по-красива усмивка.',price:{now:'45 €',was:'60 €'},until:'2026-10-31',service:'Почистване + полиране (45 €)'}
+];
+(()=>{
+  const today=new Date().toISOString().slice(0,10);
+  const list=PROMOS.filter(p=>!p.until||p.until>=today);
+  const card=document.getElementById('pcard');
+  if(!list.length)return;                       // no active promotions: the card stays hidden
+  card.hidden=false;
+  const slides=document.getElementById('pc-slides'),count=document.getElementById('pc-count'),
+        tag=document.getElementById('pc-tag'),cta=document.getElementById('pc-cta'),bar=document.getElementById('pc-bar');
+  const fmt=d=>d.split('-').reverse().join('.');
+  slides.innerHTML=list.map(p=>`<div class="pc-slide" role="group" aria-roledescription="slide"><h3>${p.title}</h3><p>${p.text}</p>
+    <div class="pc-price">${p.price?.free?'<span class="free">безплатно</span>':p.price?`<b>${p.price.now}</b>${p.price.was?`<s>${p.price.was}</s>`:''}`:''}
+    ${p.until?`<span class="pc-until">до ${fmt(p.until).slice(0,5)}</span>`:''}</div></div>`).join('');
+  const els=[...slides.children],pad=n=>String(n).padStart(2,'0');
+  if(list.length<2)document.querySelector('.pc-nav').style.display='none';
+  let i=0,timer;
+  const MS=6500,still=matchMedia('(prefers-reduced-motion:reduce)').matches;
+  const show=n=>{
+    i=(n+list.length)%list.length;
+    els.forEach((e,j)=>{e.classList.toggle('on',j===i);e.setAttribute('aria-hidden',j!==i)});
+    tag.textContent=list[i].tag;count.textContent=`${pad(i+1)} / ${pad(list.length)}`;
+    bar.classList.remove('run');void bar.offsetWidth;
+    if(list.length>1&&!still){bar.style.setProperty('--pc-ms',MS+'ms');bar.classList.add('run');clearTimeout(timer);timer=setTimeout(()=>show(i+1),MS)}
+  };
+  const pause=()=>{clearTimeout(timer);bar.classList.remove('run')};
+  document.getElementById('pc-prev').onclick=()=>show(i-1);
+  document.getElementById('pc-next').onclick=()=>show(i+1);
+  card.addEventListener('mouseenter',pause);card.addEventListener('mouseleave',()=>show(i));
+  card.addEventListener('focusin',pause);
+  let x0=null;
+  card.addEventListener('touchstart',e=>{x0=e.touches[0].clientX;pause()},{passive:true});
+  card.addEventListener('touchend',e=>{if(x0===null)return;const dx=e.changedTouches[0].clientX-x0;x0=null;show(Math.abs(dx)>40?i+(dx<0?1:-1):i)});
+  cta.addEventListener('click',()=>{const s=document.getElementById('f-svc');if(list[i].service)s.value=list[i].service});
+  show(0);
+})();
 
 // ---- phone ----
 const isPhone=matchMedia('(max-width:720px)');
