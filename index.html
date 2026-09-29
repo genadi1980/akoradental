@@ -103,7 +103,7 @@ em.fl{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--bra
 
 .pcard{position:absolute;left:0;bottom:0;z-index:3;width:min(410px,82%);background:var(--porcelain);border:1px solid var(--line);box-shadow:0 40px 70px -40px rgba(30,27,24,.5);padding:24px 26px 22px;overflow:hidden}
 .pcard[hidden]{display:none}
-.pc-top{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.pc-top{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px 12px}
 .pc-top .pill{padding:7px 13px;font-size:10px;white-space:nowrap}
 .pc-nav span{white-space:nowrap}
 .pc-nav{display:flex;align-items:center;gap:6px;font-family:var(--mono);font-size:11px;color:var(--mute)}
@@ -142,27 +142,21 @@ em.fl{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--bra
 /* ---------- SECTIONS ---------- */
 section{padding-block:clamp(90px,12vw,170px)}
 .head{display:grid;grid-template-columns:1fr 1.3fr;gap:40px;align-items:end;margin-bottom:clamp(50px,7vw,90px)}
-.head h2,.promo h2{font-family:var(--display);font-weight:400;font-size:clamp(36px,4.6vw,68px);line-height:1.06;letter-spacing:-.015em}
-.head p{max-width:440px;color:var(--ink-soft);justify-self:end}
+.head h2{font-family:var(--display);font-weight:400;font-size:clamp(36px,4.6vw,68px);line-height:1.06;letter-spacing:-.015em}
+.head>p{max-width:440px;color:var(--ink-soft);justify-self:end}
 
-/* promo */
-.promo{padding-block:clamp(70px,9vw,120px)}
-.promo-box{display:grid;grid-template-columns:.95fr 1.05fr;gap:clamp(30px,5vw,80px);align-items:center;background:var(--porcelain);border:1px solid var(--line);padding:clamp(28px,5vw,72px);position:relative;overflow:hidden}
-.promo-box::before{content:"";position:absolute;right:-120px;top:-120px;width:360px;height:360px;border-radius:50%;background:radial-gradient(circle,rgba(214,189,149,.35),transparent 70%)}
 .pill{display:inline-block;padding:9px 18px;border-radius:100px;background:var(--gold);color:#FFF8EE;font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase}
-.promo h2{margin-top:22px}
-.promo .when{margin-top:18px;color:var(--ink-soft)}
-.promo .when b{font-weight:500;color:var(--ink)}
-.offers{display:grid;gap:14px;position:relative}
-.offer{display:grid;grid-template-columns:64px 1fr auto;gap:22px;align-items:center;padding:24px 26px;background:var(--ivory);border:1px solid var(--line)}
-.offer .ic{width:64px;height:64px;border-radius:50%;border:1px solid var(--brass-soft);display:grid;place-items:center}
-.offer .ic svg{width:28px;height:28px;stroke:var(--brass);fill:none;stroke-width:1.2;stroke-linecap:round;stroke-linejoin:round}
-.offer h3{font-family:var(--display);font-weight:400;font-size:21px;line-height:1.2}
-.offer p{font-size:14px;color:var(--mute);margin-top:4px}
-.price{text-align:right;white-space:nowrap}
-.price s{font-family:var(--display);color:var(--mute);font-size:18px;text-decoration-color:#B5533C}
-.price b{display:block;font-family:var(--display);font-weight:400;font-size:44px;line-height:1;background:var(--gold);-webkit-background-clip:text;background-clip:text;color:transparent}
-.price .free{font-family:var(--serif);font-style:italic;font-size:30px;color:var(--brass)}
+/* values */
+.values{padding-block:clamp(80px,10vw,140px)}
+.values-intro{display:flex;justify-content:space-between;align-items:flex-end;gap:30px;margin-bottom:44px}
+.values-intro p:last-child{max-width:420px;color:var(--ink-soft);text-align:right}
+.values-grid{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--line)}
+.value{padding:40px 36px 0 0}
+.value+.value{padding-left:36px;border-left:1px solid var(--line)}
+.value .n{font-family:var(--mono);font-size:11px;color:var(--brass)}
+.value h3{font-family:var(--serif);font-style:italic;font-weight:400;font-size:clamp(56px,6.4vw,96px);line-height:1;margin:18px 0 22px;letter-spacing:-.01em}
+.value h3::first-letter{color:var(--brass)}
+.value p{color:var(--ink-soft);max-width:340px}
 
 /* services */
 .svc{border-top:1px solid var(--line)}
@@ -184,7 +178,7 @@ section{padding-block:clamp(90px,12vw,170px)}
 .clinic figure img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform 1.6s var(--ease)}
 .clinic figure:hover img{transform:scale(1.04)}
 .clinic figcaption{position:absolute;left:20px;bottom:20px;padding:10px 16px;background:rgba(30,27,24,.72);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);color:var(--ivory);font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase}
-.facts{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line);align-content:start}
+.facts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1px;background:var(--line);border:1px solid var(--line);align-content:start}
 .fact{background:var(--ivory);padding:28px 24px;min-height:150px;display:flex;flex-direction:column;justify-content:space-between;gap:18px}
 .fact.big{grid-column:1/-1;flex-direction:row;align-items:flex-end;min-height:auto}
 .fact .num{font-family:var(--display);font-size:clamp(46px,5vw,72px);line-height:.9}
@@ -280,12 +274,12 @@ footer{background:var(--ink);color:var(--ivory);padding-top:clamp(70px,10vw,130p
 @media (max-width:1080px){
   .nav ul,.nav .btn.desk{display:none}
   .burger{display:block}
-  .hero{grid-template-columns:1fr;gap:40px}
+  .hero{grid-template-columns:minmax(0,1fr);gap:40px}
   .stage{justify-self:center;max-width:600px}
   .steps{grid-template-columns:1fr 1fr}
   .step:nth-child(3){padding-left:0;border-left:0}
   .step{padding-bottom:40px}
-  .promo-box,.clinic,.book,.faq-grid{grid-template-columns:1fr}
+  .clinic,.book,.faq-grid{grid-template-columns:minmax(0,1fr)}
   .faq-grid h2{position:static}
   .foot-grid{grid-template-columns:1fr 1fr}
 }
@@ -344,22 +338,18 @@ footer{background:var(--ink);color:var(--ivory);padding-top:clamp(70px,10vw,130p
   .marquee span{font-size:24px;padding-inline:16px}
 
   .head{grid-template-columns:1fr;gap:18px;margin-bottom:36px}
-  .head p{justify-self:start;font-size:15px}
-  .head h2,.faq-grid h2,.promo h2{font-size:clamp(32px,9vw,40px)}
+  .head>p{justify-self:start;font-size:15px}
+  .head h2,.faq-grid h2{font-size:clamp(32px,9vw,40px)}
 
 
-  /* promo */
-  .promo{padding-block:56px}
-  .promo-box{margin-inline:calc(-1*var(--pad));border-inline:0;padding:40px var(--pad);gap:28px}
-  .offer{grid-template-columns:48px 1fr;gap:6px 16px;padding:20px 18px}
-  .offer .ic{width:48px;height:48px;grid-row:span 2}
-  .offer .ic svg{width:22px;height:22px}
-  .offer h3{font-size:18px}
-  .price{grid-column:2;text-align:left;display:flex;align-items:baseline;gap:10px;margin-top:6px}
-  .price b{font-size:36px;display:inline}
-  .price .free{font-size:24px}
-  .promo .ctas{display:grid;gap:10px}
-  .promo .ctas .btn{justify-content:center;padding:17px}
+  /* values */
+  .values{padding-block:64px}
+  .values-intro{flex-direction:column;align-items:flex-start;gap:12px;margin-bottom:24px}
+  .values-intro p:last-child{text-align:left;font-size:15px}
+  .values-grid{grid-template-columns:1fr}
+  .value,.value+.value{display:grid;grid-template-columns:auto 1fr;gap:4px 16px;align-items:baseline;padding:24px 0;border-left:0;border-bottom:1px solid var(--line)}
+  .value h3{font-size:48px;margin:0}
+  .value p{grid-column:1/-1;font-size:15px;margin-top:8px}
 
   /* services: accordion */
   .svc-row{grid-template-columns:30px 1fr 36px;gap:0 12px;padding:20px 0;cursor:pointer;-webkit-tap-highlight-color:transparent}
@@ -452,9 +442,9 @@ footer{background:var(--ink);color:var(--ivory);padding-top:clamp(70px,10vw,130p
     </a>
     <nav aria-label="Основна навигация">
       <ul>
-        <li><a href="#promo">Промоция</a></li>
         <li><a href="#uslugi">Услуги</a></li>
         <li><a href="#klinikata">Клиниката</a></li>
+        <li><a href="#podhod">Подход</a></li>
         <li><a href="#vaprosi">Въпроси</a></li>
         <li><a href="#kontakt">Контакт</a></li>
       </ul>
@@ -464,9 +454,9 @@ footer{background:var(--ink);color:var(--ivory);padding-top:clamp(70px,10vw,130p
   </div>
 </header>
 <div class="mobile" id="mobile">
-  <a href="#promo" data-n="01">Промоция</a>
-  <a href="#uslugi" data-n="02">Услуги</a>
-  <a href="#klinikata" data-n="03">Клиниката</a>
+  <a href="#uslugi" data-n="01">Услуги</a>
+  <a href="#klinikata" data-n="02">Клиниката</a>
+  <a href="#podhod" data-n="03">Подход</a>
   <a href="#vaprosi" data-n="04">Въпроси</a>
   <a href="#kontakt" data-n="05">Контакт</a>
   <a href="tel:+359889783456" class="btn"><svg viewBox="0 0 24 24"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg> 0889 783 456</a>
@@ -494,7 +484,7 @@ footer{background:var(--ink);color:var(--ivory);padding-top:clamp(70px,10vw,130p
     <p class="lede fade d2">Нова дентална клиника в Шумен. 160 m² модерно пространство, три лечебни кабинета и дигитална диагностика, в спокойна среда и без бързане.</p>
     <div class="ctas fade d3">
       <a href="#kontakt" class="btn">Запазете час <span>→</span></a>
-      <a href="#promo" class="btn ghost hide-phone">Откриваща промоция</a>
+      <a href="#uslugi" class="btn ghost hide-phone">Нашите услуги</a>
     </div>
   </div>
 
@@ -506,7 +496,7 @@ footer{background:var(--ink);color:var(--ivory);padding-top:clamp(70px,10vw,130p
     <div class="medal" aria-hidden="true">
       <svg class="ring" viewBox="0 0 148 148">
         <defs><path id="circ" d="M74,74 m-66,0 a66,66 0 1,1 132,0 a66,66 0 1,1 -132,0"/></defs>
-        <text><textPath href="#circ" textLength="410" lengthAdjust="spacing">Здраве · Естетика · Доверие ·</textPath></text>
+        <text><textPath href="#circ" textLength="410" lengthAdjust="spacing">Akora Dental Clinic · Шумен ·</textPath></text>
       </svg>
       <img src="assets/smile.jpg" alt="">
     </div>
@@ -542,30 +532,16 @@ footer{background:var(--ink);color:var(--ivory);padding-top:clamp(70px,10vw,130p
   </div>
 </div>
 
-<!-- PROMO -->
-<section id="promo" class="promo wrap">
-  <div class="promo-box rv">
-    <div>
-      <span class="pill">Откриваща промоция</span>
-      <h2>Целия <em class="fl">октомври.</em></h2>
-      <p class="when">От <b>28.09.2026</b> до <b>31.10.2026</b> посрещаме първите си пациенти със специални условия.</p>
-      <div class="ctas" style="margin-top:30px;display:flex;gap:12px;flex-wrap:wrap">
-        <a href="#kontakt" class="btn">Запазете час <span>→</span></a>
-        <a href="tel:+359889783456" class="btn ghost">0889 783 456</a>
-      </div>
-    </div>
-    <div class="offers">
-      <div class="offer">
-        <div class="ic"><svg viewBox="0 0 32 32"><path d="M11 5c-4 0-6 3-5.5 7 .4 3 1.8 5 2.4 8 .6 3.6 1 7.5 2.6 7.8 1.8.3 2-3.3 2.5-5.6.3-1.5.9-2.2 1.5-2.2"/><path d="M20 5c-2 0-3 1-4.5 1S13 5 11 5"/><circle cx="23" cy="21" r="6"/><path d="M20.4 21l1.8 1.8 3.4-3.6"/></svg></div>
-        <div><h3>Безплатен първичен преглед</h3><p>Професионална оценка и индивидуален план за лечение</p></div>
-        <div class="price"><span class="free">безплатно</span></div>
-      </div>
-      <div class="offer">
-        <div class="ic"><svg viewBox="0 0 32 32"><path d="M10 6c-4 0-6 3-5.5 7 .4 3 1.8 5 2.4 8 .6 3.6 1 7.5 2.6 7.8 1.8.3 2-3.3 2.5-5.6.3-1.5.9-2.2 1.5-2.2s1.2.7 1.5 2.2c.5 2.3.7 5.9 2.5 5.6 1.6-.3 2-4.2 2.6-7.8.6-3 2-5 2.4-8 .5-4-1.5-7-5.5-7-2 0-3 1-4.5 1S12 6 10 6z"/><path d="M26 3v5M23.5 5.5h5M27 12v3M25.5 13.5h3"/></svg></div>
-        <div><h3>Почистване на зъбен камък + полиране</h3><p>По-добро устно здраве и по-свеж дъх</p></div>
-        <div class="price"><s>60 €</s><b>45 €</b></div>
-      </div>
-    </div>
+<!-- VALUES -->
+<section id="cennosti" class="values wrap">
+  <div class="values-intro">
+    <p class="label rv">Нашите ценности</p>
+    <p class="rv" data-d="1">Три думи, с които започна Akora и които следваме при всеки пациент.</p>
+  </div>
+  <div class="values-grid">
+    <article class="value rv"><span class="n">01</span><h3>Здраве</h3><p>Профилактиката е в основата на всичко. Лекуваме причината, не само симптома, и мислим за зъбите ви в дългосрочен план.</p></article>
+    <article class="value rv" data-d="1"><span class="n">02</span><h3>Естетика</h3><p>Естествен вид, прецизна изработка и внимание към детайла. Красивата усмивка е резултат от добре свършена работа.</p></article>
+    <article class="value rv" data-d="2"><span class="n">03</span><h3>Доверие</h3><p>Отделяме време да ви изслушаме и обясняваме всяко решение. Отношение, заради което пациентите се връщат.</p></article>
   </div>
 </section>
 
@@ -630,7 +606,7 @@ footer{background:var(--ink);color:var(--ivory);padding-top:clamp(70px,10vw,130p
 <section class="quote wrap">
   <img class="orn rv" src="assets/logo-mark-gold.png" alt="">
   <blockquote class="rv" data-d="1">„Чиста усмивка. <em>По-голямо самочувствие.</em>“</blockquote>
-  <p class="label sig rv" data-d="2">Здраве · Естетика · Доверие</p>
+  <p class="label sig rv" data-d="2">Akora Dental Clinic</p>
 </section>
 
 <!-- FAQ -->
@@ -699,7 +675,7 @@ footer{background:var(--ink);color:var(--ivory);padding-top:clamp(70px,10vw,130p
         <p class="about">Нова дентална клиника в Шумен. Модерно пространство, три лечебни кабинета и грижа за детайла.</p>
         <span class="status" id="status"><i></i><span>Отворено днес</span></span>
       </div>
-      <div><h4>Клиника</h4><ul><li><a href="#promo">Промоция</a></li><li><a href="#uslugi">Услуги</a></li><li><a href="#klinikata">Клиниката</a></li><li><a href="#vaprosi">Въпроси</a></li></ul></div>
+      <div><h4>Клиника</h4><ul><li><a href="#uslugi">Услуги</a></li><li><a href="#klinikata">Клиниката</a></li><li><a href="#podhod">Подход</a></li><li><a href="#vaprosi">Въпроси</a></li></ul></div>
       <div><h4>Контакт</h4><ul><li><a href="tel:+359889783456">0889 783 456</a></li><li>ул. Дедеагач 7В</li><li>гр. Шумен</li></ul></div>
       <div><h4>Последвайте ни</h4><ul><li><a href="https://www.instagram.com/akora.dental.clinic/" target="_blank" rel="noopener">Instagram</a></li><li><a href="https://www.facebook.com/profile.php?id=100076246360132" target="_blank" rel="noopener">Facebook</a></li></ul></div>
     </div>
